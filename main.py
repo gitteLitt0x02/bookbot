@@ -31,13 +31,18 @@ def char_counter(file_content):
             letters[char] = 1
         else:
             letters[char] += 1
-    return letters
+    # this sort function will be changed in the future by an self programmed function 
+    sorted_letters = dict(sorted(letters.items(), key=lambda item:item[1], reverse=True))
+    return sorted_letters
 
 def char_presenter(char_func):
     for k,v in char_func.items():
         
         if m := re.match("([a-z])", k):
             print(f"The '{m.group(1)}' character was found {v} times")
+        else:
+            print(f"The {k} character was found {v} times")
+        
 
 
 def main():
@@ -48,7 +53,7 @@ def main():
     #print(word_func[0], '\n')
     #print(word_func[1])
 
-    print(f'--- Begin report of {book_path} ---\n')
+    print(f'--- Begin report of {book_path} ---')
     print(f'{word_func[1]} words found in the document \n')
     char_presenter(char_func)
     print('--- End report ---')
